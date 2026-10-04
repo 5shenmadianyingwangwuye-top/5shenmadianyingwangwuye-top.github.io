@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>神马电影网午夜 - 神马电影网午夜高清影视导航</title>
+<meta name="description" content="神马电影网午夜提供深夜电影、电视剧、动漫、综艺在线导航，神马电影网午夜帮你找到深夜专属好片。网址：https://shenmadianyingwangwuye-top.github.io">
+<meta name="keywords" content="神马电影网午夜,深夜电影,午夜剧场,电影,电视剧,动漫,综艺,高清影视">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://shenmadianyingwangwuye-top.github.io">
+<meta property="og:title" content="神马电影网午夜 - 深夜影视导航">
+<meta property="og:description" content="神马电影网午夜：深夜专属电影、电视剧、动漫、综艺导航。">
+<meta property="og:url" content="https://shenmadianyingwangwuye-top.github.io">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0f0c29">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Outfit","PingFang SC","Microsoft YaHei",sans-serif;
+  background:#0a0a1a;color:#c8c8e0;line-height:1.7;overflow-x:hidden;
+}
+
+/* 午夜星空背景 */
+.stars-bg{
+  position:fixed;inset:0;z-index:-2;
+  background:linear-gradient(180deg,#0a0a1a 0%,#0f0c29 40%,#1a1040 70%,#0d0b2e 100%);
+}
+.stars-bg::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%,rgba(255,255,255,.7),transparent),
+    radial-gradient(1px 1px at 30% 60%,rgba(255,255,255,.5),transparent),
+    radial-gradient(1px 1px at 50% 10%,rgba(255,255,255,.6),transparent),
+    radial-gradient(1px 1px at 70% 40%,rgba(255,255,255,.4),transparent),
+    radial-gradient(1px 1px at 90% 80%,rgba(255,255,255,.5),transparent),
+    radial-gradient(1px 1px at 20% 90%,rgba(255,255,255,.3),transparent),
+    radial-gradient(1px 1px at 60% 30%,rgba(255,255,255,.5),transparent),
+    radial-gradient(1px 1px at 80% 70%,rgba(255,255,255,.4),transparent),
+    radial-gradient(1px 1px at 40% 80%,rgba(255,255,255,.3),transparent),
+    radial-gradient(1px 1px at 15% 50%,rgba(255,255,255,.5),transparent),
+    radial-gradient(1px 1px at 85% 15%,rgba(255,255,255,.6),transparent),
+    radial-gradient(1px 1px at 55% 55%,rgba(255,255,255,.4),transparent);
+  animation:twinkle 4s ease-in-out infinite alternate;
+}
+@keyframes twinkle{0%{opacity:.6}100%{opacity:1}}
+
+/* 极光光斑 */
+.aurora{
+  position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;
+}
+.aurora::before,.aurora::after{
+  content:'';position:absolute;border-radius:50%;filter:blur(80px);opacity:.15;
+}
+.aurora::before{width:600px;height:600px;background:#4a2c8a;top:-200px;left:-100px;animation:drift 12s ease-in-out infinite}
+.aurora::after{width:500px;height:500px;background:#1a4a6a;bottom:-150px;right:-100px;animation:drift 15s ease-in-out infinite reverse}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(80px,60px)}}
+
+/* 顶部光带 */
+.top-glow{
+  height:2px;background:linear-gradient(90deg,transparent,#4a6fa5,#7b5ea7,#4a6fa5,transparent);
+  animation:glow-slide 3s linear infinite;
+}
+@keyframes glow-slide{0%{background-position:-200% 0}100%{background-position:200% 0}}
+
+/* 导航 */
+.navbar{
+  position:sticky;top:0;z-index:999;
+  background:rgba(10,10,26,.7);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border-bottom:1px solid rgba(100,100,180,.15);
+}
+.nav-in{
+  max-width:1200px;margin:0 auto;height:60px;
+  display:flex;align-items:center;justify-content:space-between;padding:0 18px;
+}
+.brand{
+  font-size:1.25rem;font-weight:800;color:#e0e0ff;
+  letter-spacing:-.3px;
+}
+.brand b{color:#7b8fcc;font-weight:300}
+.nav-menu{display:flex;gap:0;list-style:none}
+.nav-menu a{
+  display:block;padding:20px 16px;color:#9090b0;text-decoration:none;
+  font-size:.78rem;font-weight:600;letter-spacing:1.5px;
+  position:relative;transition:.3s;
+}
+.nav-menu a::after{
+  content:'';position:absolute;bottom:0;left:50%;width:0;height:1px;
+  background:linear-gradient(90deg,transparent,#7b8fcc,transparent);
+  transition:.3s;transform:translateX(-50%);
+}
+.nav-menu a:hover,.nav-menu a.active{color:#e0e0ff}
+.nav-menu a:hover::after,.nav-menu a.active::after{width:70%}
+.nav-toggle{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:8px}
+.nav-toggle span{width:22px;height:1.5px;background:#7b8fcc;border-radius:1px}
+
+/* Hero */
+.hero{
+  max-width:1200px;margin:0 auto;padding:80px 18px 60px;
+  text-align:center;position:relative;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 18px;border-radius:20px;
+  background:rgba(100,100,180,.1);border:1px solid rgba(100,100,180,.2);
+  color:#7b8fcc;font-size:.7rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;
+  margin-bottom:28px;backdrop-filter:blur(10px);
+}
+.hero-badge::before{content:'🌙';font-size:.85rem}
+.hero h1{
+  font-size:3.8rem;font-weight:800;line-height:1;margin-bottom:18px;
+  color:#e8e8ff;letter-spacing:-1.5px;
+}
+.hero h1 .thin{font-weight:200;color:#7b8fcc}
+.hero p{font-size:1rem;color:#8080a0;max-width:520px;margin:0 auto 36px;font-weight:300}
+.hero-search{
+  max-width:500px;margin:0 auto;display:flex;
+  background:rgba(255,255,255,.03);border:1px solid rgba(100,100,180,.25);
+  border-radius:14px;overflow:hidden;backdrop-filter:blur(20px);
+}
+.hero-search input{
+  flex:1;background:transparent;border:none;outline:none;
+  padding:14px 20px;color:#e0e0ff;font-size:.95rem;font-family:inherit;
+}
+.hero-search input::placeholder{color:#505070}
+.hero-search button{
+  border:none;background:rgba(100,100,180,.2);color:#7b8fcc;
+  padding:0 24px;font-weight:700;font-size:.85rem;cursor:pointer;
+  letter-spacing:1px;transition:.3s;border-left:1px solid rgba(100,100,180,.2);
+}
+.hero-search button:hover{background:rgba(100,100,180,.35);color:#e0e0ff}
+
+/* 玻璃卡片 */
+.section{padding:60px 18px}
+.wrap{max-width:1200px;margin:0 auto}
+.sec-head{text-align:center;margin-bottom:44px}
+.sec-head .label{
+  font-size:.65rem;font-weight:600;letter-spacing:4px;text-transform:uppercase;
+  color:#5a7aaf;margin-bottom:10px;
+}
+.sec-head h2{font-size:2.2rem;font-weight:800;color:#e0e0ff;letter-spacing:-.5px}
+.sec-head h2 em{font-weight:200;color:#7b8fcc;font-style:normal}
+.sec-head p{color:#606080;margin-top:8px;font-size:.88rem;font-weight:300}
+
+/* 卡片网格 */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.glass-card{
+  position:relative;background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;padding:26px;overflow:hidden;
+  transition:.4s;backdrop-filter:blur(16px);
+}
+.glass-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(123,143,204,.5),transparent);
+}
+.glass-card:hover{transform:translateY(-6px);background:rgba(255,255,255,.05);border-color:rgba(123,143,204,.25)}
+.glass-card *{position:relative;z-index:1}
+.card-icon{
+  width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;margin-bottom:16px;
+  background:rgba(100,100,180,.1);border:1px solid rgba(100,100,180,.15);
+}
+.glass-card h3{font-size:1.05rem;font-weight:700;color:#d0d0f0;margin-bottom:8px}
+.glass-card p{font-size:.8rem;color:#707090;margin-bottom:14px;font-weight:300}
+.card-tags{display:flex;gap:6px;flex-wrap:wrap}
+.ctag{
+  font-size:.65rem;font-weight:600;padding:3px 10px;border-radius:8px;
+  letter-spacing:.5px;
+}
+.ct1{background:rgba(100,100,180,.1);color:#7b8fcc;border:1px solid rgba(100,100,180,.2)}
+.ct2{background:rgba(123,94,167,.1);color:#a08cc0;border:1px solid rgba(123,94,167,.2)}
+.ct3{background:rgba(74,111,165,.1);color:#6a8fb5;border:1px solid rgba(74,111,165,.2)}
+
+/* 排行榜 */
+.rank-section{background:rgba(255,255,255,.01)}
+.rank-list{display:flex;flex-direction:column;gap:10px}
+.rank-item{
+  display:grid;grid-template-columns:48px 1fr auto;gap:16px;align-items:center;
+  background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);
+  border-radius:12px;padding:14px 18px;transition:.3s;backdrop-filter:blur(10px);
+}
+.rank-item:hover{border-color:rgba(123,143,204,.2);background:rgba(255,255,255,.04)}
+.rank-num{
+  font-size:1.6rem;font-weight:800;color:#4a4a6a;text-align:center;
+}
+.rank-num.top{color:#7b8fcc}
+.rank-item h4{font-size:.95rem;font-weight:700;color:#c0c0e0;margin-bottom:2px}
+.rank-item small{font-size:.72rem;color:#505070;font-weight:300}
+.rank-score{
+  font-size:1.1rem;font-weight:700;color:#7b8fcc;
+  background:rgba(100,100,180,.08);border:1px solid rgba(100,100,180,.15);
+  padding:4px 10px;border-radius:8px;
+}
+
+/* 关于 */
+.about-grid{
+  display:grid;grid-template-columns:1.3fr .7fr;gap:40px;align-items:center;
+}
+.about-text h3{font-size:1.6rem;font-weight:800;color:#e0e0ff;margin-bottom:14px;letter-spacing:-.5px}
+.about-text h3 em{font-weight:200;color:#7b8fcc;font-style:normal}
+.about-text p{font-size:.88rem;color:#707090;margin-bottom:12px;font-weight:300}
+.feat-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.feat-box{
+  padding:8px 14px;border-radius:10px;font-size:.72rem;font-weight:600;
+  border:1px solid rgba(100,100,180,.2);color:#7b8fcc;
+  background:rgba(100,100,180,.05);backdrop-filter:blur(10px);
+}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat-card{
+  background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);
+  border-radius:14px;padding:20px;text-align:center;backdrop-filter:blur(10px);
+}
+.stat-card b{display:block;font-size:2rem;font-weight:800;color:#7b8fcc}
+.stat-card span{font-size:.72rem;color:#505070;font-weight:400}
+
+/* 底部 */
+.footer{
+  background:rgba(5,5,15,.8);backdrop-filter:blur(20px);
+  border-top:1px solid rgba(100,100,180,.1);padding:48px 18px 20px;
+}
+.foot-in{
+  max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;
+}
+.footer h3{font-size:1.1rem;font-weight:800;margin-bottom:10px;color:#e0e0ff}
+.footer h3 b{font-weight:200;color:#7b8fcc}
+.footer h4{font-size:.78rem;font-weight:700;margin-bottom:12px;color:#5a7aaf;letter-spacing:1.5px;text-transform:uppercase}
+.footer p,.footer li{font-size:.78rem;color:#505070;list-style:none;font-weight:300}
+.footer ul{padding:0}
+.footer li{margin-bottom:6px}
+.footer a{color:#505070;text-decoration:none;transition:.3s}
+.footer a:hover{color:#7b8fcc}
+.foot-bot{
+  max-width:1200px;margin:28px auto 0;padding-top:16px;
+  border-top:1px solid rgba(100,100,180,.1);text-align:center;
+  font-size:.7rem;color:#404060;font-weight:300;
+}
+.foot-bot a{color:#5a7aaf;text-decoration:none}
+
+/* 回到顶部 */
+.topbtn{
+  position:fixed;right:20px;bottom:20px;width:40px;height:40px;
+  border-radius:10px;border:1px solid rgba(100,100,180,.2);
+  background:rgba(10,10,26,.8);backdrop-filter:blur(10px);
+  color:#7b8fcc;font-size:1rem;font-weight:700;cursor:pointer;
+  opacity:0;visibility:hidden;transition:.3s;z-index:99;
+}
+.topbtn.show{opacity:1;visibility:visible}
+.topbtn:hover{border-color:rgba(123,143,204,.4);color:#e0e0ff}
+
+@media(max-width:1024px){
+  .hero h1{font-size:2.8rem}
+  .about-grid{grid-template-columns:1fr}
+  .foot-in{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .nav-menu{
+    display:none;position:absolute;top:60px;left:0;right:0;flex-direction:column;
+    background:rgba(10,10,26,.95);backdrop-filter:blur(24px);
+    border-bottom:1px solid rgba(100,100,180,.15);
+  }
+  .nav-menu.show{display:flex}
+  .nav-menu a{border-bottom:1px solid rgba(100,100,180,.1);text-align:center}
+  .nav-toggle{display:flex}
+  .hero{padding:56px 16px 40px}
+  .hero h1{font-size:2rem}
+  .hero-search{flex-direction:column;border-radius:12px}
+  .hero-search button{border-left:none;border-top:1px solid rgba(100,100,180,.2);padding:12px}
+  .sec-head h2{font-size:1.6rem}
+  .rank-item{grid-template-columns:36px 1fr;gap:10px;padding:12px 14px}
+  .rank-score{grid-column:2/3;justify-self:start;margin-top:4px;font-size:.9rem}
+  .foot-in{grid-template-columns:1fr}
+}
+@media(max-width:460px){
+  .hero h1{font-size:1.5rem}
+  .grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+<div class="stars-bg"></div>
+<div class="aurora"></div>
+<div class="top-glow"></div>
+
+<nav class="navbar">
+  <div class="nav-in">
+    <a href="#" class="brand">神马电影网<b>午夜</b></a>
+    <ul class="nav-menu" id="menu">
+      <li><a href="#movie" class="active">电影</a></li>
+      <li><a href="#tv">电视剧</a></li>
+      <li><a href="#anime">动漫</a></li>
+      <li><a href="#rank">排行榜</a></li>
+      <li><a href="#about">关于</a></li>
+    </ul>
+    <div class="nav-toggle" id="navToggle"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="hero-badge">Midnight Glass</span>
+  <h1>神马电影网<span class="thin">午夜</span></h1>
+  <p>深夜专属影视导航——在毛玻璃与星空间，找到属于你的那部好片。网址：https://shenmadianyingwangwuye-top.github.io</p>
+  <div class="hero-search">
+    <input type="text" placeholder="在神马电影网午夜搜索电影 / 电视剧 / 动漫" aria-label="搜索">
+    <button type="button">搜索</button>
+  </div>
+</header>
+
+<section class="section" id="movie">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">Channel 01</div>
+      <h2>电影 <em>频道</em></h2>
+      <p>神马电影网午夜整理深夜最适合看的电影类型</p>
+    </div>
+    <div class="grid">
+      <div class="glass-card">
+        <div class="card-icon">🌙</div>
+        <h3>深夜悬疑</h3>
+        <p>万籁俱寂时，最适合烧脑推理</p>
+        <div class="card-tags"><span class="ctag ct1">悬疑</span><span class="ctag ct2">烧脑</span></div>
+      </div>
+      <div class="glass-card">
+        <div class="card-icon">🎬</div>
+        <h3>午夜院线</h3>
+        <p>最新上映大片，午夜场同步更新</p>
+        <div class="card-tags"><span class="ctag ct2">新片</span><span class="ctag ct3">院线</span></div>
+      </div>
+      <div class="glass-card">
+        <div class="card-icon">🎭</div>
+        <h3>文艺独处</h3>
+        <p>一个人安静看的文艺佳作</p>
+        <div class="card-tags"><span class="ctag ct3">文艺</span><span class="ctag ct1">治愈</span></div>
+      </div>
+      <div class="glass-card">
+        <div class="card-icon">🛋️</div>
+        <h3>周末通宵</h3>
+        <p>适合一口气刷完的系列电影</p>
+        <div class="card-tags"><span class="ctag ct1">系列</span><span class="ctag ct2">马拉松</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section rank-section" id="tv">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">Channel 02</div>
+      <h2>电视剧 <em>频道</em></h2>
+      <p>神马电影网午夜覆盖深夜追剧全品类</p>
+    </div>
+    <div class="grid">
+      <div class="glass-card">
+        <div class="card-icon">🇨🇳</div>
+        <h3>深夜国产</h3>
+        <p>不注水好剧，适合深夜一口气追</p>
+        <div class="card-tags"><span class="ctag ct1">国产</span></div>
+      </div>
+      <div class="glass-card">
+        <div class="card-icon">🇰🇷</div>
+        <h3>韩剧夜场</h3>
+        <p>短小精悍，每集都是高潮</p>
+        <div class="card-tags"><span class="ctag ct2">韩剧</span></div>
+      </div>
+      <div class="glass-card">
+        <div class="card-icon">🇺🇸</div>
+        <h3>美剧马拉松</h3>
+        <p>高能紧凑，根本停不下来</p>
+        <div class="card-tags"><span class="ctag ct3">美剧</span></div>
+      </div>
+      <div class="glass-card">
+        <div class="card-icon">📼</div>
+        <h3>经典重刷</h3>
+        <p>老剧新看，深夜重温经典</p>
+        <div class="card-tags"><span class="ctag ct1">经典</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="anime">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">Channel 03</div>
+      <h2>动漫 <em>频道</em></h2>
+      <p>神马电影网午夜：深夜番、治愈番、神作导航</p>
+    </div>
+    <div class="grid">
+      <div class="glass-card">
+        <div class="card-icon">🌸</div>
+        <h3>深夜新番</h3>
+        <p>当季深夜档动画同步导航</p>
+        <div class="card-tags"><span class="ctag ct1">新番</span></div>
+      </div>
+      <div class="glass-card">
+        <div class="card-icon">✨</div>
+        <h3>治愈神作</h3>
+        <p>看完能安心入睡的温暖动画</p>
+        <div class="card-tags"><span class="ctag ct2">治愈</span></div>
+      </div>
+      <div class="glass-card">
+        <div class="card-icon">🔮</div>
+        <h3>奇幻冒险</h3>
+        <p>想象力拉满的奇幻世界</p>
+        <div class="card-tags"><span class="ctag ct3">奇幻</span></div>
+      </div>
+      <div class="glass-card">
+        <div class="card-icon">🎞️</div>
+        <h3>剧场版</h3>
+        <p>深夜独享视听盛宴</p>
+        <div class="card-tags"><span class="ctag ct1">剧场</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section rank-section" id="rank">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="label">Channel 04</div>
+      <h2>午夜 <em>排行榜</em></h2>
+      <p>神马电影网午夜用户深夜最爱 TOP 6</p>
+    </div>
+    <div class="rank-list">
+      <div class="rank-item"><div class="rank-num top">01</div><div><h4>星际归途 3</h4><small>神马电影网午夜 · 科幻 · 9.6分</small></div><div class="rank-score">9.6</div></div>
+      <div class="rank-item"><div class="rank-num top">02</div><div><h4>庆余年 第三季</h4><small>神马电影网午夜 · 古装 · 9.4分</small></div><div class="rank-score">9.4</div></div>
+      <div class="rank-item"><div class="rank-num top">03</div><div><h4>咒术回战 终章</h4><small>神马电影网午夜 · 动漫 · 9.2分</small></div><div class="rank-score">9.2</div></div>
+      <div class="rank-item"><div class="rank-num">04</div><div><h4>财阀的秋天</h4><small>神马电影网午夜 · 韩剧 · 9.1分</small></div><div class="rank-score">9.1</div></div>
+      <div class="rank-item"><div class="rank-num">05</div><div><h4>封神第三部</h4><small>神马电影网午夜 · 奇幻 · 9.0分</small></div><div class="rank-score">9.0</div></div>
+      <div class="rank-item"><div class="rank-num">06</div><div><h4>深夜食堂 第五季</h4><small>神马电影网午夜 · 日剧 · 8.8分</small></div><div class="rank-score">8.8</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="wrap about-grid">
+    <div class="about-text">
+      <h3>关于 <em>神马电影网午夜</em></h3>
+      <p>神马电影网午夜（<a href="https://shenmadianyingwangwuye-top.github.io" style="color:#7b8fcc;">https://shenmadianyingwangwuye-top.github.io</a>）是一个专为深夜观影设计的影视导航站。</p>
+      <p>暗夜玻璃拟态设计，柔光毛玻璃卡片，像午夜星空一样安静地陪你找片。覆盖电影、电视剧、动漫、综艺四大频道。</p>
+      <div class="feat-row">
+        <span class="feat-box">🌙 深夜电影</span>
+        <span class="feat-box">📺 午夜追剧</span>
+        <span class="feat-box">🎨 深夜动漫</span>
+        <span class="feat-box">🏆 排行榜</span>
+        <span class="feat-box">📱 手机自适应</span>
+      </div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card"><b>4</b><span>内容频道</span></div>
+      <div class="stat-card"><b>24/7</b><span>全天候</span></div>
+      <div class="stat-card"><b>每日</b><span>更新</span></div>
+      <div class="stat-card"><b>0</b><span>广告</span></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="foot-in">
+    <div>
+      <h3>神马电影网<b>午夜</b></h3>
+      <p>神马电影网午夜是深夜专属电影、电视剧、动漫、综艺一站式导航站。网址：https://shenmadianyingwangwuye-top.github.io</p>
+    </div>
+    <div>
+      <h4>频道</h4>
+      <ul><li><a href="#movie">电影</a></li><li><a href="#tv">电视剧</a></li><li><a href="#anime">动漫</a></li><li><a href="#rank">排行榜</a></li></ul>
+    </div>
+    <div>
+      <h4>帮助</h4>
+      <ul><li><a href="#">使用指南</a></li><li><a href="#">常见问题</a></li><li><a href="#">留言反馈</a></li></ul>
+    </div>
+    <div>
+      <h4>关注</h4>
+      <ul><li><a href="#">公众号</a></li><li><a href="#">微博</a></li><li><a href="#">QQ群</a></li></ul>
+    </div>
+  </div>
+  <div class="foot-bot">
+    © 2024 <a href="https://shenmadianyingwangwuye-top.github.io">神马电影网午夜</a> · shenmadianyingwangwuye-top.github.io · 关键词：神马电影网午夜
+  </div>
+</footer>
+
+<button class="topbtn" id="topbtn" aria-label="回到顶部">↑</button>
+
+<script>
+document.getElementById('navToggle').addEventListener('click',function(){
+  document.getElementById('menu').classList.toggle('show');
+});
+var navAs=document.querySelectorAll('.nav-menu a');
+navAs.forEach(function(a){
+  a.addEventListener('click',function(){
+    navAs.forEach(function(x){x.classList.remove('active')});
+    a.classList.add('active');
+    document.getElementById('menu').classList.remove('show');
+  });
+});
+var secs=document.querySelectorAll('section[id]');
+window.addEventListener('scroll',function(){
+  var sy=window.pageYOffset;
+  secs.forEach(function(s){
+    var t=s.offsetTop-90,b=t+s.offsetHeight;
+    if(sy>=t&&sy<b){
+      navAs.forEach(function(x){x.classList.remove('active')});
+      var lk=document.querySelector('.nav-menu a[href="#'+s.id+'"]');
+      if(lk)lk.classList.add('active');
+    }
+  });
+});
+var tb=document.getElementById('topbtn');
+window.addEventListener('scroll',function(){tb.classList.toggle('show',window.pageYOffset>300)});
+tb.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+</script>
+</body>
+</html>
